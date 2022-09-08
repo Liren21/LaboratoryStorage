@@ -1,4 +1,4 @@
-import java.util.Objects;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class laboratoryWorkOne {
@@ -13,6 +13,7 @@ public class laboratoryWorkOne {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void menu() {
+
         Scanner in = new Scanner(System.in);
         System.out.print(
                 ANSI_GREEN + "\n--------------------------------------------------------------------\n\n" +
@@ -25,16 +26,20 @@ public class laboratoryWorkOne {
                         "Выберите пункт:" + ANSI_GREEN
         );
         String valueInput = in.nextLine();
-        if (Objects.equals(valueInput, "0")) {
-            exitProgram();
-        } else if (Objects.equals(valueInput, "1")) {
-            helloWorld();
-        } else if (Objects.equals(valueInput, "2")) {
-            System.out.print(ANSI_GREEN + "Вы выбрали: Калькулятор по формуле\n" + ANSI_GREEN);
-            menu();
-        } else {
-            System.out.print(ANSI_RED + "Введите число из представленного меню" + ANSI_RED);
-            menu();
+        switch (valueInput) {
+            case ("0") -> exitProgram();
+            case ("1") -> {
+                helloWorld();
+                menu();
+            }
+            case ("2") -> {
+                calc();
+                menu();
+            }
+            default -> {
+                System.out.print(ANSI_RED + "Введите число из представленного меню" + ANSI_RED);
+                menu();
+            }
         }
     }
 
@@ -42,14 +47,48 @@ public class laboratoryWorkOne {
         menu();
     }
 
+
+
     public static void helloWorld() {
-        System.out.print(ANSI_GREEN + "Вы выбрали: Вывод в консоль 'Hello World!\n" + ANSI_GREEN);
+        System.out.print(ANSI_BLUE + "Вы выбрали: Вывод в консоль 'Hello World!\n" + ANSI_BLUE);
         menu();
     }
 
     public static void exitProgram() {
-        System.out.print("Вы выбрали: Выход из программы до свидание\n");
+        System.out.print("Вы выбрали: Выход из программы.\nДо свидания, надеемся, что вы еще вернетесь.\n");
         System.exit(0);
+    }
+
+    public static void calc() {
+        //Z/X + 7*sqrt(Y)
+        Scanner in = new Scanner(System.in);
+        System.out.print(
+                ANSI_BLUE + "Формула: Z/X + 7*sqrt(Y)\nВведите число X: " + ANSI_BLUE
+        );
+       try {
+           int inputValX = in.nextInt();
+           System.out.print(
+                   ANSI_BLUE + "Введите число Y: " + ANSI_BLUE
+           );
+           int inputValY = in.nextInt();
+           System.out.print(
+                   ANSI_BLUE + "Введите число Z: " + ANSI_BLUE
+           );
+           int inputValZ = in.nextInt();
+
+
+
+           double sum = (inputValZ / inputValX) + (7 * Math.sqrt(inputValY));
+
+
+           String formatNumber = new DecimalFormat("#0.000").format(sum);
+           System.out.printf(ANSI_PURPLE + "Ваш ответ: " + formatNumber + ANSI_PURPLE);
+
+       }
+       catch(Exception e){
+           System.out.print(ANSI_RED + "Ошибка: введен недопустимый символ.\nПожалуйста, проверьте корректность вводимых данных" + ANSI_RED);
+           menu();
+       }
     }
 
 
