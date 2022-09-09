@@ -54,32 +54,29 @@ public class laboratoryWorkOne {
         System.out.print("Вы выбрали: Выход из программы.\nДо свидания, надеемся, что вы еще вернетесь.\n");
         System.exit(0);
     }
-    public static void intputValueU(){
+    public static void calc() {
+        //Z/X + 7*sqrt(Y)
         Scanner in = new Scanner(System.in);
         System.out.print(
                 ANSI_BLUE + "Формула: Z/X + 7*sqrt(Y)\nВведите число X: " + ANSI_BLUE
         );
-        int inputValX = in.nextInt();
-        System.out.print(
-                ANSI_BLUE + "Введите число Y: " + ANSI_BLUE
-        );
-        int inputValY = in.nextInt();
-        System.out.print(
-                ANSI_BLUE + "Введите число Z: " + ANSI_BLUE
-        );
-        int inputValZ = in.nextInt();
-        double sum = (inputValZ / inputValX) + (7 * Math.sqrt(inputValY));
-        String formatNumber = new DecimalFormat("#0.000").format(sum);
-        System.out.printf(ANSI_PURPLE + "Ваш ответ: " + formatNumber + ANSI_PURPLE);
-
-    };
-    public static void calc() {
-        //Z/X + 7*sqrt(Y)
         try {
-            intputValueU();
+            int inputValX = in.nextInt();
+            System.out.print(
+                    ANSI_BLUE + "Введите число Y: " + ANSI_BLUE
+            );
+            int inputValY = in.nextInt();
+            System.out.print(
+                    ANSI_BLUE + "Введите число Z: " + ANSI_BLUE
+            );
+            int inputValZ = in.nextInt();
+            double sum = (inputValZ / inputValX) + (7 * Math.sqrt(inputValY));
+            String formatNumber = new DecimalFormat("#0.000").format(sum);
+            System.out.printf(ANSI_PURPLE + "Ваш ответ: " + formatNumber + ANSI_PURPLE);
+
         } catch (Exception e) {
             System.out.print(ANSI_RED + "Ошибка: введен недопустимый символ.\nПожалуйста, проверьте корректность вводимых данных\n" + ANSI_RED);
-            intputValueU();
+           calc();
         }
     }
 }
