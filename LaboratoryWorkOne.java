@@ -7,7 +7,7 @@ public class LaboratoryWorkTwo {
     public static final String sANSI_GREEN = "\u001B[32m";
     public static final String sANSI_BLUE = "\u001B[34m";
     public static final String sANSI_PURPLE = "\u001B[35m";
-
+ 
     public static void vMenu() {
         System.out.print(
                 sANSI_GREEN + "\n--------------------------------------------------------------------\n\n" +
