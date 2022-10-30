@@ -17,8 +17,6 @@ public class Menu {
         );
         Scanner in = new Scanner(System.in);
         String valueInput = in.nextLine();
-
-
         switch (valueInput) {
             case ("0") -> {
                 System.out.print("Вы выбрали: Выход из программы.\nДо свидания, надеемся, что вы еще вернетесь.\n");

@@ -2,36 +2,27 @@ package LaboratoryTwo;
 
 import java.util.Scanner;
 
-
 public class InputDate {
-
     public static int iYear() {
-        EntryEntity lo2 = new EntryEntity();
-        lo2.vYear();
-        return lo2.iYear;
+        EntryEntity state = new EntryEntity();
+        state.vYear();
+        return state.iYear;
     }
-
     public static int iMonth() {
-        EntryEntity lo2 = new EntryEntity();
-        lo2.vMouth();
-        return lo2.iMouth;
+        EntryEntity state = new EntryEntity();
+        state.vMouth();
+        return state.iMouth;
     }
-
-
     public static int iDay() {
-        EntryEntity lo2 = new EntryEntity();
-        lo2.vDay();
-        return lo2.iDay;
+        EntryEntity state = new EntryEntity();
+        state.vDay();
+        return state.iDay;
     }
-
 }
-
-
 class EntryEntity {
     int iDay;
     int iMouth;
     int iYear;
-
     void vDay() {
         Scanner in = new Scanner(System.in);
         System.out.print(TextPaint.sANSI_BLUE + "День: " + TextPaint.sANSI_BLUE);
@@ -65,7 +56,5 @@ class EntryEntity {
             iYear = value;
         }
     }
-
-
 }
 
