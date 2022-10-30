@@ -9,12 +9,16 @@ public class RecursionDate {
 
     public static void DateInput() {
 
+
         ArrayList<Integer> al = new ArrayList<>();
         try {
             for (int i = 0; i < 4; i++) {
                 int d = InputDate.iDay();
+                System.out.println(d + "\n");
                 int m = InputDate.iMonth();
+                System.out.println(m + "\n");
                 int y = InputDate.iYear();
+                System.out.println(y + "\n");
                 LocalDate date = LocalDate.of(y, m, d);
                 System.out.println(date + "\n");
                 al.add(d);
@@ -26,7 +30,7 @@ public class RecursionDate {
 
 
         } catch (Exception e) {
-            System.out.print(TextPaint.sANSI_RED + "Ошибка: Жопа\n" + TextPaint.sANSI_RED);
+            System.out.print(TextPaint.sANSI_RED + "Ошибка: введите корректные данные\n" + TextPaint.sANSI_RED);
             DateInput();
         }
 
