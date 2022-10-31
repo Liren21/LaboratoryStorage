@@ -10,9 +10,11 @@ import java.util.Objects;
 public class RecursionDate {
     public static void DateInput() {
         ArrayList<Integer> day = new ArrayList<>();
+        ArrayList<Integer> month = new ArrayList<>();
         ArrayList<Integer> year = new ArrayList<>();
         ArrayList<Integer> list = new ArrayList<>();
         ArrayList<Integer> listTwo = new ArrayList<>();
+
         try {
             for (int i = 0; i < 4; i++) {
                 int d = InputDate.iDay();
@@ -21,9 +23,9 @@ public class RecursionDate {
                 System.out.println(m + "\n");
                 int y = InputDate.iYear();
                 System.out.println(y + "\n");
-                LocalDate date = LocalDate.of(y, m, d);
-                System.out.println(date + "\n");
+                System.out.printf("%d.%d.%d \n", d, m, y);
                 day.add(d);
+                month.add(m);
                 year.add(y);
             }
 
@@ -33,7 +35,6 @@ public class RecursionDate {
             for (int i = res; i < resTwo + 1; i++) {
                 list.add(i);
             }
-
 
             int ver = day.get(2);
             int verTwo = day.get(3);
@@ -64,16 +65,16 @@ public class RecursionDate {
             int resN = result.size();
 
             if (day.get(0) > day.get(1) || day.get(2) > day.get(3)) {
-                System.out.print(TextPaint.sANSI_RED + "Ошибка: дата окончания меньше чем дата начала\n" + TextPaint.sANSI_RED);
+                System.out.print(TextPaint.sANSI_RED + "Ошибка: дата окончания меньше чем дата начала \n" + TextPaint.sANSI_RED);
                 DateInput();
             } else {
-                if (!Objects.equals(year.get(0), year.get(1)) || !Objects.equals(year.get(2), year.get(3))) {
-                    if (!Objects.equals(year.get(1), year.get(3))) {
-                        System.out.println("N = 0 - нет результата\n");
+                if (!Objects.equals(year.get(0), year.get(1)) || !Objects.equals(year.get(2), year.get(3)) || !Objects.equals(month.get(0), month.get(1)) || !Objects.equals(month.get(2), month.get(3))) {
+                    if (!Objects.equals(year.get(1), year.get(3)) || !Objects.equals(month.get(1), month.get(3))) {
+                        System.out.println("N = 0 - нет результата и даты не пересекается или месяца не совпдают \n");
                     }
                 } else {
                     BigInteger period = Calculator.factorial(resN);
-                    System.out.println("N = " + resN + "\n");
+                    System.out.println("N = " + resN + "даты не пересекается\n");
                     System.out.println(period + "\n");
                 }
 
