@@ -1,5 +1,9 @@
 package LabaratoryThree.LaboratoryTwo;
 
+import LaboratoryTwo.Calculator;
+import LaboratoryTwo.InputDate;
+import LaboratoryTwo.TextPaint;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,9 +20,9 @@ public class RecursionDate {
 
         try {
             for (int i = 0; i < 4; i++) {
-                int d = InputDate.iDay();
+                int d = LaboratoryTwo.InputDate.iDay();
                 System.out.println(d + "\n");
-                int m = InputDate.iMonth();
+                int m = LaboratoryTwo.InputDate.iMonth();
                 System.out.println(m + "\n");
                 int y = InputDate.iYear();
                 System.out.println(y + "\n");
@@ -64,13 +68,13 @@ public class RecursionDate {
             int resN = result.size();
 
             if (day.get(0) > day.get(1) || day.get(2) > day.get(3) || !Objects.equals(month.get(0), month.get(1)) || !Objects.equals(month.get(2), month.get(3)) || !Objects.equals(month.get(1), month.get(3))) {
-                System.out.print(TextPaint.sANSI_RED + "Ошибка: дата окончания не должна быть меньше чем дата начала , а месяца одинаковые \n" + TextPaint.sANSI_RED);
+                System.out.print(LaboratoryTwo.TextPaint.sANSI_RED + "Ошибка: дата окончания не должна быть меньше чем дата начала , а месяца должны быть одинаковыми \n" + LaboratoryTwo.TextPaint.sANSI_RED);
                 DateInput();
             } else {
-                if (!Objects.equals(year.get(0), year.get(1)) || !Objects.equals(year.get(2), year.get(3))) {
-                    if (!Objects.equals(year.get(1), year.get(3))) {
-                        System.out.println("N = 0 - нет результата и даты не пересекается или месяца не совпдают \n");
-                    }
+                if (!Objects.equals(year.get(0), year.get(1)) || !Objects.equals(year.get(2), year.get(3))||!Objects.equals(year.get(1), year.get(3))) {
+
+                    System.out.println("N = 0 - нет результата и даты не пересекается \n");
+
                 } else {
                     BigInteger period = Calculator.factorial(resN);
                     System.out.println("N = " + resN + "\n");
@@ -80,7 +84,7 @@ public class RecursionDate {
             }
 
         } catch (Exception e) {
-            System.out.print(TextPaint.sANSI_RED + "Ошибка: введите корректные данные\n" + TextPaint.sANSI_RED);
+            System.out.print(LaboratoryTwo.TextPaint.sANSI_RED + "Ошибка: введите корректные данные\n" + TextPaint.sANSI_RED);
             DateInput();
         }
     }

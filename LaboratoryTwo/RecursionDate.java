@@ -64,13 +64,13 @@ public class RecursionDate {
             int resN = result.size();
 
             if (day.get(0) > day.get(1) || day.get(2) > day.get(3) || !Objects.equals(month.get(0), month.get(1)) || !Objects.equals(month.get(2), month.get(3)) || !Objects.equals(month.get(1), month.get(3))) {
-                System.out.print(TextPaint.sANSI_RED + "Ошибка: дата окончания не должна быть меньше чем дата начала , а месяца одинаковые \n" + TextPaint.sANSI_RED);
+                System.out.print(TextPaint.sANSI_RED + "Ошибка: дата окончания не должна быть меньше чем дата начала , а месяца должны быть одинаковыми \n" + TextPaint.sANSI_RED);
                 DateInput();
             } else {
-                if (!Objects.equals(year.get(0), year.get(1)) || !Objects.equals(year.get(2), year.get(3))) {
-                    if (!Objects.equals(year.get(1), year.get(3))) {
-                        System.out.println("N = 0 - нет результата и даты не пересекается или месяца не совпдают \n");
-                    }
+                if (!Objects.equals(year.get(0), year.get(1)) || !Objects.equals(year.get(2), year.get(3))||!Objects.equals(year.get(1), year.get(3))) {
+
+                        System.out.println("N = 0 - нет результата и даты не пересекается \n");
+
                 } else {
                     BigInteger period = Calculator.factorial(resN);
                     System.out.println("N = " + resN + "\n");
