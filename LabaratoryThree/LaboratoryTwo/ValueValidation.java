@@ -21,6 +21,7 @@ public class ValueValidation {
     }
 
     public static void vSpaceDeletion(String sValOne, String sValTwo) {
+        //Если привести к одному регистру, удалить пробелы в начале и в конце + дублирование пробелов.
         String sResOne = sValOne.toLowerCase();
         String sResTwo = sValTwo.toLowerCase();
         String sDelDupOne = sResOne.replaceAll("\\s+", " ");
@@ -30,15 +31,15 @@ public class ValueValidation {
 
     }
 
-    public static void vPerevertish(String strOne, String strTwo) throws Exception {
-
+    public static void vReverseSequence(String strOne, String strTwo) throws Exception {
+        //Являются ли 1 строка перевёртышем к другой (символы в обратной последовательности)
         int stringLength = strTwo.length();
         String result = "";
         for (int i = 0; i < stringLength; i++) {
             result = strTwo.charAt(i) + result;
         }
         if (result.equals(strOne)) {
-            System.out.println(TextPaint.sANSI_BLUE+"Строки равны\n"+TextPaint.sANSI_BLUE);
+            System.out.println(TextPaint.sANSI_BLUE + "Строки равны\n" + TextPaint.sANSI_BLUE);
         } else {
             throw new Exception("Строки не равны");
         }
