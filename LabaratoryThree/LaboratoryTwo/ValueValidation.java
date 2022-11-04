@@ -4,30 +4,33 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValueValidation {
-    private static final String EMAIL_REGEX = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
-    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
-    public static void vStringComparison(String strOne, String strTwo) {
+
+    public static void vStringComparison(String strOne, String strTwo) throws Exception {
         // возвращается true, ведь обе строки равны без учёта регистра
         if (strOne.equalsIgnoreCase(strTwo)) {
-            System.out.println("Строки равны  без учета регистра");
+            System.out.println(TextPaint.sANSI_BLUE + "Строки равны  без учета регистра" + TextPaint.sANSI_BLUE);
         } else {
-            System.out.println("Строки не равны без учета регистра");
+            throw new Exception("Строки не равны без учета регистра");
         }
         // возвращается false, т. к. учитывается регистр символов
         if (strOne.equals(strTwo)) {
             System.out.println("Строки равны  c учетом регистра");
         } else {
-            System.out.println("Строки не равны  c учетом регистра");
+            throw new Exception("Строки не равны c учета регистра");
         }
     }
 
-    public static void vSpaceDeletion(String strOne) {
+    public static void vSpaceDeletion(String sValOne, String sValTwo) {
+        String sResOne = sValOne.toLowerCase();
+        String sResTwo = sValTwo.toLowerCase();
+        String sDelDupOne = sResOne.replaceAll("\\s+", " ");
+        String sDelDupTwo = sResTwo.replaceAll("\\s+", " ");
+        System.out.println(sDelDupOne.trim());
+        System.out.println(sDelDupTwo.trim());
 
-        strOne = strOne.replace(',', '.');
-        System.out.println(strOne);
     }
 
-    public static void vPerevertish(String strOne, String strTwo) {
+    public static void vPerevertish(String strOne, String strTwo) throws Exception {
 
         int stringLength = strTwo.length();
         String result = "";
@@ -35,33 +38,54 @@ public class ValueValidation {
             result = strTwo.charAt(i) + result;
         }
         if (result.equals(strOne)) {
-            System.out.println("Они равны");
+            System.out.println(TextPaint.sANSI_BLUE+"Строки равны\n"+TextPaint.sANSI_BLUE);
         } else {
-            System.out.println("Они не равны");
+            throw new Exception("Строки не равны");
         }
     }
 
 
-    public static boolean emailValidator(String email)
-    {
-        if (email == null) {
-            return false;
+    public static void vEmail(String valOne) throws Exception {
+
+        Pattern pattern = Pattern.compile("^((\\w|[-+])+(\\.[\\w-]+)*@[\\w-]+((\\.[\\d\\p{Alpha}]+)*(\\.\\p{Alpha}{2,})*)*)$");
+        Matcher matcher = pattern.matcher(valOne);
+
+        if (matcher.find()) {
+            System.out.print("Проверку прошел " +
+                    valOne.substring(matcher.start(), matcher.end()) + " \n");
+        } else {
+            throw new Exception("Проверку не прошел " + TextPaint.sANSI_GREEN + valOne + TextPaint.sANSI_GREEN + TextPaint.sANSI_RED + " Это не похоже на адрес электронной почты  \n" + TextPaint.sANSI_RED);
         }
 
-        Matcher matcher = EMAIL_PATTERN.matcher(email);
-        return matcher.matches();
     }
 
-    public static void vEmail(String valOne)
-    {
-        String email = valOne;
+    public static void vPhoneNumber(String valOne) throws Exception {
 
-        // Проверка адреса электронной почты
-        if (emailValidator(email)) {
-            System.out.println("The email address " + email + " is valid");
+        Pattern pattern = Pattern.compile("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$");
+        Matcher matcher = pattern.matcher(valOne);
+
+        if (matcher.find()) {
+            System.out.print(TextPaint.sANSI_BLUE + "Проверку прошел " +
+                    valOne.substring(matcher.start(), matcher.end()) + " \n" + TextPaint.sANSI_BLUE);
+        } else {
+            throw new Exception("Проверку не прошел " + TextPaint.sANSI_GREEN + valOne + TextPaint.sANSI_GREEN + TextPaint.sANSI_RED + " Это не похоже на номера телефона  \n" + TextPaint.sANSI_RED);
         }
-        else {
-            System.out.println("The email address " + email + " is invalid");
+
+    }
+
+    public static void vIpAddress(String valOne) throws Exception {
+
+        Pattern pattern = Pattern.compile("(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}");
+        Matcher matcher = pattern.matcher(valOne);
+
+        if (matcher.find()) {
+            System.out.print(TextPaint.sANSI_BLUE + "Проверку прошел  " +
+                    valOne.substring(matcher.start(), matcher.end()) + " \n" + TextPaint.sANSI_BLUE);
+        } else
+            throw new Exception("Проверку не прошел " + TextPaint.sANSI_GREEN + valOne + TextPaint.sANSI_GREEN + TextPaint.sANSI_RED + " Это не похоже на ip address(ipv4)  \n" + TextPaint.sANSI_RED);
+        {
+            throw new Exception("Проверку не прошел " + TextPaint.sANSI_GREEN + valOne + TextPaint.sANSI_GREEN + TextPaint.sANSI_RED + " Это не похоже на ip address(ipv4)  \n" + TextPaint.sANSI_RED);
         }
+
     }
 }

@@ -1,7 +1,6 @@
 package LaboratoryTwo;
 
 import java.math.BigInteger;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -64,17 +63,17 @@ public class RecursionDate {
 
             int resN = result.size();
 
-            if (day.get(0) > day.get(1) || day.get(2) > day.get(3)) {
-                System.out.print(TextPaint.sANSI_RED + "Ошибка: дата окончания меньше чем дата начала \n" + TextPaint.sANSI_RED);
+            if (day.get(0) > day.get(1) || day.get(2) > day.get(3) || !Objects.equals(month.get(0), month.get(1)) || !Objects.equals(month.get(2), month.get(3)) || !Objects.equals(month.get(1), month.get(3))) {
+                System.out.print(TextPaint.sANSI_RED + "Ошибка: дата окончания не должна быть меньше чем дата начала , а месяца одинаковые \n" + TextPaint.sANSI_RED);
                 DateInput();
             } else {
-                if (!Objects.equals(year.get(0), year.get(1)) || !Objects.equals(year.get(2), year.get(3)) || !Objects.equals(month.get(0), month.get(1)) || !Objects.equals(month.get(2), month.get(3))) {
-                    if (!Objects.equals(year.get(1), year.get(3)) || !Objects.equals(month.get(1), month.get(3))) {
+                if (!Objects.equals(year.get(0), year.get(1)) || !Objects.equals(year.get(2), year.get(3))) {
+                    if (!Objects.equals(year.get(1), year.get(3))) {
                         System.out.println("N = 0 - нет результата и даты не пересекается или месяца не совпдают \n");
                     }
                 } else {
                     BigInteger period = Calculator.factorial(resN);
-                    System.out.println("N = " + resN + "даты не пересекается\n");
+                    System.out.println("N = " + resN + "\n");
                     System.out.println(period + "\n");
                 }
 

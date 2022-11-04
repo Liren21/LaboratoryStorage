@@ -34,10 +34,6 @@ public class Menu {
                 RecursionDate.DateInput();
                 vMenu();
             }
-            case ("4") -> {
-                RecursionDate.DateInput();
-                vMenu();
-            }
             default -> {
                 System.out.print(TextPaint.sANSI_RED + "Введите число из представленного меню" + TextPaint.sANSI_RED);
                 vMenu();

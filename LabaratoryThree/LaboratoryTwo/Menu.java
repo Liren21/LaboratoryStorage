@@ -3,7 +3,7 @@ package LabaratoryThree.LaboratoryTwo;
 import java.util.Scanner;
 
 public class Menu {
-    public static void vMenu() {
+    public static void vMenu() throws Exception {
         System.out.print(
                 TextPaint.sANSI_GREEN + "\n--------------------------------------------------------------------\n\n" +
                         "Приветствую тебя пользователь, программа обладает следующим функционалом:\n" +
