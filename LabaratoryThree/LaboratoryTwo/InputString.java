@@ -6,9 +6,9 @@ public class InputString {
 
     public static void inputVal() throws Exception {
         System.out.print("Введите значение: ");
-        String sValOne = General.sScannerStringCustom();
+        String sValOne = General.sScannerCustom();
         System.out.print("Введите значение: ");
-        String sValTwo = General.sScannerStringCustom();
+        String sValTwo = General.sScannerCustom();
         System.out.print(
                 TextPaint.sANSI_GREEN +
                         "Проверка по:\n" +
@@ -23,7 +23,7 @@ public class InputString {
                         "Выберите пункт:" + TextPaint.sANSI_GREEN
         );
 
-        String valueInput = General.sScannerStringCustom();
+        String valueInput = General.sScannerCustom();
 
         switch (valueInput) {
             case ("0") -> {

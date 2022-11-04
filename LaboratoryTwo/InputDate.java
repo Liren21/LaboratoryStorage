@@ -1,6 +1,6 @@
 package LaboratoryTwo;
 
-import static LabaratoryThree.LaboratoryTwo.General.iScannerIntCustom;
+import static LabaratoryThree.LaboratoryTwo.General.iScannerCustom;
 
 public class InputDate {
     public static int iYear() {

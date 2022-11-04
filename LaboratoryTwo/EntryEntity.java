@@ -1,6 +1,7 @@
 package LaboratoryTwo;
 
-import static LabaratoryThree.LaboratoryTwo.General.iScannerIntCustom;
+
+import static LaboratoryTwo.General.iScannerCustom;
 
 public class EntryEntity {
     int iDay;
@@ -10,7 +11,7 @@ public class EntryEntity {
     void vDay() {
         try {
             System.out.print(TextPaint.sANSI_BLUE + "День: " + TextPaint.sANSI_BLUE);
-            int value = iScannerIntCustom();
+            int value = iScannerCustom();
             if (value > 31 || value == 0) {
                 System.out.print(TextPaint.sANSI_RED + "Не правильно ввели день\n" + TextPaint.sANSI_RED);
                 vDay();
@@ -26,7 +27,7 @@ public class EntryEntity {
     void vMonth() {
         try {
             System.out.print(TextPaint.sANSI_BLUE + "Месяц: " + TextPaint.sANSI_BLUE);
-            int value = iScannerIntCustom();
+            int value = iScannerCustom();
             if (value > 12 || value == 0) {
                 System.out.print(TextPaint.sANSI_RED + "Не правильно ввели месяц\n" + TextPaint.sANSI_RED);
                 vMonth();
@@ -42,7 +43,7 @@ public class EntryEntity {
     void vYear() {
         try {
             System.out.print(TextPaint.sANSI_BLUE + "Год: " + TextPaint.sANSI_BLUE);
-            int value = iScannerIntCustom();
+            int value = iScannerCustom();
             if (value < 2022) {
                 System.out.print(TextPaint.sANSI_RED + "Не правильно ввели год\n" + TextPaint.sANSI_RED);
                 vYear();
