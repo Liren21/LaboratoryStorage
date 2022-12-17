@@ -1,87 +1,65 @@
 package LabaratoryThree.LaboratoryTwo;
 
-import LaboratoryTwo.Calculator;
-import LaboratoryTwo.InputDate;
 import LaboratoryTwo.TextPaint;
 
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class RecursionDate {
     public static void DateInput() {
-        ArrayList<Integer> day = new ArrayList<>();
-        ArrayList<Integer> month = new ArrayList<>();
-        ArrayList<Integer> year = new ArrayList<>();
-        ArrayList<Integer> list = new ArrayList<>();
-        ArrayList<Integer> listTwo = new ArrayList<>();
+        ArrayList<String> storageDate = new ArrayList<>();
+        ArrayList<String> firstSegment = new ArrayList<>();
+        ArrayList<String> secondSegment = new ArrayList<>();
+
 
         try {
-            for (int i = 0; i < 4; i++) {
-                int d = LaboratoryTwo.InputDate.iDay();
-                System.out.println(d + "\n");
-                int m = LaboratoryTwo.InputDate.iMonth();
-                System.out.println(m + "\n");
-                int y = InputDate.iYear();
-                System.out.println(y + "\n");
-                System.out.printf("%d.%d.%d \n", d, m, y);
-                day.add(d);
-                month.add(m);
-                year.add(y);
+
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+            for (int i = 1; i < 5; i++) {
+                System.out.println(LabaratoryThree.LaboratoryTwo.TextPaint.sANSI_BLUE + "Введите дату для " + i + " точки в отрезке: ");
+                String date = General.sScannerCustom();
+                System.out.println("Ваша дата " + date + " \n");
+                storageDate.add(date);
+            }
+            Date date2 = format.parse(storageDate.get(0));
+            Date date3 = format.parse(storageDate.get(1));
+            Date date4 = format.parse(storageDate.get(2));
+            Date date5 = format.parse(storageDate.get(3));
+            long milliseconds = date3.getTime() - date2.getTime();
+            long millisecondsOne = date5.getTime() - date4.getTime();
+            int days = (int) (milliseconds / (24 * 60 * 60 * 1000));
+            int daysOne = (int) (millisecondsOne / (24 * 60 * 60 * 1000));
+
+            for (int i = 0; i < days + 1; i++) {
+                Calendar calendar = Calendar.getInstance();
+                String s = storageDate.get(0);
+                calendar.setTime(format.parse(s));
+                calendar.add(Calendar.DATE, i);
+                s = format.format(calendar.getTime());
+                firstSegment.add(s);
             }
 
-            int res = day.get(0);
-            int resTwo = day.get(1);
-
-            for (int i = res; i < resTwo + 1; i++) {
-                list.add(i);
+            for (int i = 0; i < daysOne + 1; i++) {
+                Calendar calendar = Calendar.getInstance();
+                String s = storageDate.get(2);
+                calendar.setTime(format.parse(s));
+                calendar.add(Calendar.DATE, i);
+                s = format.format(calendar.getTime());
+                secondSegment.add(s);
             }
 
-            int ver = day.get(2);
-            int verTwo = day.get(3);
+            firstSegment.retainAll(secondSegment);
 
-            for (int i = ver; i < verTwo + 1; i++) {
-                listTwo.add(i);
-            }
+            int iSizeSortedArray = firstSegment.size();
 
-            Arrays.sort(new ArrayList[]{list});
-            Arrays.sort(new ArrayList[]{listTwo});
-            ArrayList<Object> result = new ArrayList<>();
-            int i = 0;
-            int j = 0;
-            while (i < list.size() && j < listTwo.size()) {
-                if (list.get(i) > listTwo.get(j)) {
-                    j++;
+            BigInteger period = Calculator.factorial(iSizeSortedArray);
+            System.out.println("N = " + iSizeSortedArray + "\n");
+            System.out.println(period + "\n");
 
-                } else if (list.get(i) < listTwo.get(j)) {
-                    i++;
-
-                } else {
-                    result.add(list.get(i));
-                    i++;
-                    j++;
-                }
-            }
-
-            int resN = result.size();
-
-            if (day.get(0) > day.get(1) || day.get(2) > day.get(3) || !Objects.equals(month.get(0), month.get(1)) || !Objects.equals(month.get(2), month.get(3)) || !Objects.equals(month.get(1), month.get(3))) {
-                System.out.print(LaboratoryTwo.TextPaint.sANSI_RED + "Ошибка: дата окончания не должна быть меньше чем дата начала , а месяца должны быть одинаковыми \n" + LaboratoryTwo.TextPaint.sANSI_RED);
-                DateInput();
-            } else {
-                if (!Objects.equals(year.get(0), year.get(1)) || !Objects.equals(year.get(2), year.get(3))||!Objects.equals(year.get(1), year.get(3))) {
-
-                    System.out.println("N = 0 - нет результата и даты не пересекается \n");
-
-                } else {
-                    BigInteger period = Calculator.factorial(resN);
-                    System.out.println("N = " + resN + "\n");
-                    System.out.println(period + "\n");
-                }
-
-            }
 
         } catch (Exception e) {
             System.out.print(LaboratoryTwo.TextPaint.sANSI_RED + "Ошибка: введите корректные данные\n" + TextPaint.sANSI_RED);

@@ -12,4 +12,5 @@ public class General {
         Scanner in = new Scanner(System.in);
         return in.nextLine();
     }
+
 }
