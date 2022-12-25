@@ -1,89 +1,103 @@
 package test;
 
+import main.General.Validation.ValidationException;
 import main.General.Validation.ValidationValue;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputStringTest {
 
-    ValidationValue v = new ValidationValue();
-
     @Test
     @DisplayName("Сравнение строк true")
-    public void vStringComparison() {
+    public void vStringComparisonTrue() throws ValidationException {
         String resOne = "dfdf";
         String resTwo = "dfdf";
         String expected = "true";
 
-        assertEquals(expected, ValidationValue.vStringComparison(resOne, resTwo));
-    } @Test
-    @DisplayName("Сравнение строк false")
-    public void vStringComparisonTwo() {
-        String resOne = "dfdf";
-        String resTwo = "dfdfs";
-        String expected = "false";
+        Assertions.assertEquals(expected, ValidationValue.vStringComparison(resOne, resTwo));
+    }
 
-        assertEquals(expected, ValidationValue.vStringComparison(resOne, resTwo));
+    @Test
+    @DisplayName("Сравнение строк исключения")
+    public void vStringComparisonException() {
+        String resOne = "dfdf";
+        String resTwo = "dfdfsssss";
+        assertThrows(Exception.class, () -> {
+            ValidationValue.vStringComparison(resOne, resTwo);
+        });
     }
 
     @Test
     @DisplayName("Строка перевертыш true ")
-    public void vReverseSequence() {
+    public void vReverseSequenceTrue() throws ValidationException {
         String resOne = "dfdf";
         String resTwo = "fdfd";
         String expected = "true";
 
-        assertEquals(expected, ValidationValue.vReverseSequence(resOne, resTwo));
-    }    @Test
-    @DisplayName("Строка перевертыш false ")
-    public void vReverseSequenceTwo() {
-        String resOne = "dfddf";
-        String resTwo = "dfddf";
-        String expected = "false";
+        Assertions.assertEquals(expected, ValidationValue.vReverseSequence(resOne, resTwo));
+    }
 
-        assertEquals(expected, ValidationValue.vReverseSequence(resOne, resTwo));
+    @Test
+    @DisplayName("Строка перевертыш исключения")
+    public void vReverseSequenceException() {
+        String resOne = "dfddf";
+        String resTwo = "dfddfdasdasa";
+
+
+        assertThrows(Exception.class, () -> {
+            ValidationValue.vReverseSequence(resOne, resTwo);
+        });
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"+919367788755", "8989829304", "+16308520397", "786-307-3615"})
-    public void vPhoneNumber(String candidate) {
+    public void vPhoneNumberTrue(String candidate) throws ValidationException {
         String expected = "true";
-        assertEquals(expected, v.vPhoneNumber(candidate));
+        Assertions.assertEquals(expected, ValidationValue.vPhoneNumber(candidate));
     }
+
     @ParameterizedTest
-    @ValueSource(strings = {"+982", "1-1-1", "123765", })
-    public void vPhoneNumberTwo(String candidate) {
-        String expected = "false";
-        assertEquals(expected, v.vPhoneNumber(candidate));
+    @ValueSource(strings = {"+ddsdadsa",})
+    public void vPhoneNumberException(String candidate) throws ValidationException {
+
+        assertThrows(Exception.class, () -> {
+            ValidationValue.vPhoneNumber(candidate);
+        });
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"geon@ihateregex.io", "test@gmail.com mail@test.org", "mail@testing.com"})
-    public void vEmail(String candidate) {
+    public void vEmailTrue(String candidate) throws ValidationException {
         String expected = "true";
-        assertEquals(expected, v.vEmail(candidate));
+        Assertions.assertEquals(expected, ValidationValue.vEmail(candidate));
     }
+
     @ParameterizedTest
-    @ValueSource(strings = {"mail with@space.com", "theproblem@test@gmail.com"})
-    public void vEmailTwo(String candidate) {
-        String expected = "true";
-        assertEquals(expected, v.vEmail(candidate));
+    @ValueSource(strings = {"@.io"})
+    public void vEmailException(String candidate) {
+        assertThrows(Exception.class, () -> {
+            ValidationValue.vEmail(candidate);
+        });
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"192.168.1.1", "127.0.0.1", "0.0.0.0", "255.255.255.255"})
-    public void vIpAddress(String candidate) {
+    public void vIpAddressTrue(String candidate) throws ValidationException {
         String expected = "true";
-        assertEquals(expected, v.vIpAddress(candidate));
-    }    @ParameterizedTest
-    @ValueSource(strings = {"999.999.999.999", "1.2.3", "256.256.256.256"})
-    public void vIpAddressTwo(String candidate) {
-        String expected = "false";
-        assertEquals(expected, v.vIpAddress(candidate));
+        Assertions.assertEquals(expected, ValidationValue.vIpAddress(candidate));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"@.io"})
+    public void vIpAddressException(String candidate) {
+        assertThrows(Exception.class, () -> {
+            ValidationValue.vIpAddress(candidate);
+        });
     }
 
 }
