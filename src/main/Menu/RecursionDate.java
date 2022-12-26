@@ -1,5 +1,6 @@
 package main.Menu;
 
+import main.General.Task;
 import main.General.TextPaint;
 
 import java.math.BigInteger;
@@ -12,7 +13,13 @@ import static main.General.Estimated.EstimatedCalc.factorial;
 import static main.General.PullScanner.sScannerCustom;
 
 
-public class RecursionDate {
+public class RecursionDate extends Task {
+    public RecursionDate() {
+        _title = "Рекурсивный калькулятор";
+    }
+    public void execute() {
+        DateInput();
+    }
     public static void DateInput() {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         format.setLenient(false);

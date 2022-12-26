@@ -1,13 +1,20 @@
 package main.Menu;
 
 import main.General.Estimated.EstimatedCalc;
+import main.General.Task;
 import main.General.TextPaint;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class Calculator {
-
+public class Calculator extends Task {
+    public Calculator()
+    {
+        _title = "расчёт формулы";
+    }
+    public void execute() {
+        vCalc();
+    }
     public static void vCalc() {
         //Z/X + 7*sqrt(Y)
         Scanner in = new Scanner(System.in);
@@ -37,7 +44,7 @@ public class Calculator {
             String formatNumber = new DecimalFormat("#0.000").format(sum);
 
             if (!Double.isNaN(sum)) {
-                System.out.printf(TextPaint.sANSI_PURPLE + "Ваш ответ: " + formatNumber + TextPaint.sANSI_PURPLE);
+                System.out.printf(TextPaint.sANSI_PURPLE + "Ваш ответ: " + formatNumber + TextPaint.sANSI_PURPLE+"\n");
             } else {
                 System.out.printf(TextPaint.sANSI_PURPLE + "Ваш ответ: Не число поэтому проверьте вводимые числа, особенно то, что в корне\n" + TextPaint.sANSI_PURPLE);
                 vCalc();

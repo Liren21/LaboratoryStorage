@@ -1,21 +1,27 @@
 package main.General.Validation;
 
+import main.General.Output;
 import main.General.TextPaint;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValidationValue extends ValidationCustomException {
-    public static String vStringComparison(String strOne, String strTwo) throws ValidationException {
-        if (strOne.equalsIgnoreCase(strTwo)) {
-            System.out.println(TextPaint.sANSI_BLUE + "Строки равны " + TextPaint.sANSI_BLUE);
-        } else {
-            vExpNoValid(0);
+    public static String vStringComparison(String strOne, String strTwo) {
+        try {
+            if (strOne.equalsIgnoreCase(strTwo)) {
+                System.out.println(TextPaint.sANSI_BLUE + "Строки равны " + TextPaint.sANSI_BLUE);
+            } else {
+                vExpNoValid(0);
+            }
+        } catch (ValidationException e) {
+            Output.println(e.getMessage());
+            return "false";
         }
         return "true";
     }
 
-    public static String vSpaceDeletion(String sValOne, String sValTwo) throws ValidationException {
+    public static String vSpaceDeletion(String sValOne, String sValTwo) {
 
         String sResOne = sValOne.toLowerCase();
         String sResTwo = sValTwo.toLowerCase();
@@ -28,24 +34,28 @@ public class ValidationValue extends ValidationCustomException {
 
     }
 
-    public static String vReverseSequence(String strOne, String strTwo) throws ValidationException {
-        int stringLength = strTwo.length();
-        String result = "";
-        for (int i = 0; i < stringLength; i++) {
-            result = strTwo.charAt(i) + result;
-        }
-        if (result.equals(strOne)) {
-            System.out.println(TextPaint.sANSI_BLUE + "Строки равны\n" + TextPaint.sANSI_BLUE);
-        } else {
-            vExpNoValid(2);
+    public static String vReverseSequence(String strOne, String strTwo) {
+        try {
+            int stringLength = strTwo.length();
+            String result = "";
+            for (int i = 0; i < stringLength; i++) {
+                result = strTwo.charAt(i) + result;
+            }
+            if (result.equals(strOne)) {
+                System.out.println(TextPaint.sANSI_BLUE + "Строки равны\n" + TextPaint.sANSI_BLUE);
+            } else {
+                vExpNoValid(2);
+            }
+        } catch (ValidationException e) {
+            Output.println(e.getMessage());
+            return "false";
         }
         return "true";
     }
 
 
-    public static String vEmail(String valOne) throws ValidationException {
-
-
+    public static String vEmail(String valOne)  {
+        try {
             Pattern pattern = Pattern.compile("[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+");
             Matcher matcher = pattern.matcher(valOne);
 
@@ -55,33 +65,47 @@ public class ValidationValue extends ValidationCustomException {
             } else {
                 vExpNoValid(3);
             }
+        } catch (ValidationException e) {
+            Output.println(e.getMessage());
+            return "false";
+        }
 
         return "true";
 
     }
 
-    public static String vPhoneNumber(String valOne) throws ValidationException {
-        Pattern pattern = Pattern.compile("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$");
-        Matcher matcher = pattern.matcher(valOne);
-        if (matcher.find()) {
-            System.out.print(TextPaint.sANSI_BLUE + "Проверку прошел " +
-                    valOne.substring(matcher.start(), matcher.end()) + " \n" + TextPaint.sANSI_BLUE);
-        } else {
-            vExpNoValid(4);
+    public static String vPhoneNumber(String valOne) {
+        try {
+            Pattern pattern = Pattern.compile("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$");
+            Matcher matcher = pattern.matcher(valOne);
+            if (matcher.find()) {
+                System.out.print(TextPaint.sANSI_BLUE + "Проверку прошел " +
+                        valOne.substring(matcher.start(), matcher.end()) + " \n" + TextPaint.sANSI_BLUE);
+            } else {
+                vExpNoValid(4);
+            }
+        } catch (ValidationException e) {
+            Output.println(e.getMessage());
+            return "false";
         }
         return "true";
     }
 
-    public static String vIpAddress(String valOne) throws ValidationException {
+    public static String vIpAddress(String valOne) {
 
-        Pattern pattern = Pattern.compile("(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}");
-        Matcher matcher = pattern.matcher(valOne);
+        try {
+            Pattern pattern = Pattern.compile("(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}");
+            Matcher matcher = pattern.matcher(valOne);
 
-        if (matcher.find()) {
-            System.out.print(TextPaint.sANSI_BLUE + "Проверку прошел  " +
-                    valOne.substring(matcher.start(), matcher.end()) + " \n" + TextPaint.sANSI_BLUE);
-        } else {
-            vExpNoValid(5);
+            if (matcher.find()) {
+                System.out.print(TextPaint.sANSI_BLUE + "Проверку прошел  " +
+                        valOne.substring(matcher.start(), matcher.end()) + " \n" + TextPaint.sANSI_BLUE);
+            } else {
+                vExpNoValid(5);
+            }
+        } catch (ValidationException e) {
+            Output.println(e.getMessage());
+            return "false";
         }
         return "true";
     }

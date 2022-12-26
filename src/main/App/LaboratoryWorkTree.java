@@ -1,11 +1,23 @@
 package main.App;
 
-import main.Home.PullMenu;
+import main.General.Console;
+import main.General.Task;
+import main.General.Validation.ValidationException;
+
+import static main.Menu.Menu.*;
 
 public class LaboratoryWorkTree {
 
-    public static void main(String[] args) throws Exception {
-        PullMenu.vMenu();
+    public static void main(String[] args) throws ValidationException {
+        if (args.length == 0) {
+            while (true) {
+                print();
+                Task task = sSelectingMenuNumber();
+                task.execute();
+            }
+        } else {
+            Console.StartProgram(args);
+        }
     }
 
 }

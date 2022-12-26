@@ -27,14 +27,13 @@ class InputStringTest {
     public void vStringComparisonException() {
         String resOne = "dfdf";
         String resTwo = "dfdfsssss";
-        assertThrows(Exception.class, () -> {
-            ValidationValue.vStringComparison(resOne, resTwo);
-        });
+        String expected = "false";
+        Assertions.assertEquals(expected, ValidationValue.vStringComparison(resOne, resTwo));
     }
 
     @Test
     @DisplayName("Строка перевертыш true ")
-    public void vReverseSequenceTrue() throws ValidationException {
+    public void vReverseSequenceTrue()  {
         String resOne = "dfdf";
         String resTwo = "fdfd";
         String expected = "true";
@@ -47,11 +46,9 @@ class InputStringTest {
     public void vReverseSequenceException() {
         String resOne = "dfddf";
         String resTwo = "dfddfdasdasa";
+        String expected = "false";
 
-
-        assertThrows(Exception.class, () -> {
-            ValidationValue.vReverseSequence(resOne, resTwo);
-        });
+        Assertions.assertEquals(expected, ValidationValue.vReverseSequence(resOne, resTwo));
     }
 
     @ParameterizedTest
@@ -63,16 +60,14 @@ class InputStringTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"+ddsdadsa",})
-    public void vPhoneNumberException(String candidate) throws ValidationException {
-
-        assertThrows(Exception.class, () -> {
-            ValidationValue.vPhoneNumber(candidate);
-        });
+    public void vPhoneNumberException(String candidate) {
+        String expected = "false";
+        Assertions.assertEquals(expected, ValidationValue.vPhoneNumber(candidate));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"geon@ihateregex.io", "test@gmail.com mail@test.org", "mail@testing.com"})
-    public void vEmailTrue(String candidate) throws ValidationException {
+    public void vEmailTrue(String candidate)  {
         String expected = "true";
         Assertions.assertEquals(expected, ValidationValue.vEmail(candidate));
     }
@@ -80,14 +75,13 @@ class InputStringTest {
     @ParameterizedTest
     @ValueSource(strings = {"@.io"})
     public void vEmailException(String candidate) {
-        assertThrows(Exception.class, () -> {
-            ValidationValue.vEmail(candidate);
-        });
+        String expected = "false";
+        Assertions.assertEquals(expected, ValidationValue.vEmail(candidate));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"192.168.1.1", "127.0.0.1", "0.0.0.0", "255.255.255.255"})
-    public void vIpAddressTrue(String candidate) throws ValidationException {
+    public void vIpAddressTrue(String candidate)  {
         String expected = "true";
         Assertions.assertEquals(expected, ValidationValue.vIpAddress(candidate));
     }
@@ -95,9 +89,8 @@ class InputStringTest {
     @ParameterizedTest
     @ValueSource(strings = {"@.io"})
     public void vIpAddressException(String candidate) {
-        assertThrows(Exception.class, () -> {
-            ValidationValue.vIpAddress(candidate);
-        });
+        String expected = "false";
+        Assertions.assertEquals(expected, ValidationValue.vIpAddress(candidate));
     }
 
 }
