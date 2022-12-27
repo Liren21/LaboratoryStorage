@@ -50,9 +50,9 @@ public class Calculator extends Task {
                 vCalc();
             }
         } catch (Exception e) {
-
             System.out.print(TextPaint.sANSI_RED + "Ошибка: введен недопустимый символ.\n" +
                     "Пожалуйста, проверьте корректность вводимых данных\n" + TextPaint.sANSI_RED);
+//            System.out.print(e.getMessage());
             vCalc();
         }
 

@@ -26,7 +26,7 @@ public class ValidationCustomException {
                 throw new ValidationException(TextPaint.sANSI_RED + "Проверку не прошел  Это не похоже на ip address(ipv4)  \n"+TextPaint.sANSI_RED);
             }
             case (6) -> {
-                throw new ValidationException(TextPaint.sANSI_RED + "Чисто Х не может равно 0  \n"+TextPaint.sANSI_RED);
+                throw new ValidationException(TextPaint.sANSI_RED + "Чисто Х не может равно 0 \n"+TextPaint.sANSI_RED);
             }
             case (7) -> {
                 throw new ValidationException(TextPaint.sANSI_RED + "Число Y не может быть больше 0  \n"+TextPaint.sANSI_RED);

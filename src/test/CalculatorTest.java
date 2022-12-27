@@ -6,13 +6,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.naming.NameNotFoundException;
+
+import static java.lang.Float.NaN;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorTest {
 
     @Test
     @DisplayName("Проверка калькулятора")
-    public void TestsCalculatorTrue() throws ValidationException {
+    public void TestsCalculatorTrue() {
         int x = 1;
         int y = 2;
         int z = 3;
@@ -36,9 +39,7 @@ class CalculatorTest {
         int x = 1;
         int y = -1;
         int z = 3;
-        assertThrows(Exception.class, () -> {
-             EstimatedCalc.CalcFormula(x, y, z);
-        });
+        Assertions.assertEquals(NaN, EstimatedCalc.CalcFormula(x, y, z));
     }
 
 }

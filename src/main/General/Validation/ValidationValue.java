@@ -110,19 +110,25 @@ public class ValidationValue extends ValidationCustomException {
         return "true";
     }
 
-    public static int vValZero(int valOne, String val) throws ValidationException {
-        switch (val) {
-            case "x":
-                if (valOne == 0) {
-                    vExpNoValid(6);
-                }
-                break;
-            case "y":
-                if (valOne < 0) {
-                    vExpNoValid(7);
-                }
-                break;
-        }
+    public static int vValZero(int valOne, String val) {
+      try {
+          switch (val) {
+              case "x":
+                  if (valOne == 0) {
+                      vExpNoValid(6);
+                  }
+                  break;
+              case "y":
+                  if (valOne < 0) {
+                      vExpNoValid(7);
+                  }
+                  break;
+          }
+      }catch (ValidationException e){
+          System.out.print(e.getMessage());
+          return 0;
+
+      }
         return valOne;
 
 

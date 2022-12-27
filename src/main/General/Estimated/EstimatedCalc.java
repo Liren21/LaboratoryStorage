@@ -8,7 +8,7 @@ import static main.General.Validation.ValidationCustomException.vExpNoValid;
 import static main.General.Validation.ValidationValue.vValZero;
 
 public class EstimatedCalc {
-    public static double CalcFormula(int valX, int valY, int valZ) throws ValidationException {
+    public static double CalcFormula(int valX, int valY, int valZ) {
         vValZero(valX, "x");
         vValZero(valY, "y");
         return (valZ / valX) + (7 * Math.sqrt(valY));
